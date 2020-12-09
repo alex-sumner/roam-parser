@@ -1,4 +1,4 @@
-<content> = (element | plain-text)*
+content = (element | plain-text)*
 <element> = todo | done | link | code-block | code | block-ref | roam-render | latex | image-alias | alias | alias-fragment-start | alias-mid | alias-end | highlight | bold | italic
 
 link = <link-start> (plain-text | link)* <link-end>

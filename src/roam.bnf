@@ -1,0 +1,39 @@
+<content> = (element | plain-text)*
+<element> = todo | done | link | code-block | code | block-ref | roam-render | latex | image-alias | alias | alias-fragment-start | alias-mid | alias-end | highlight | bold | italic
+
+link = <link-start> (plain-text | link)* <link-end>
+code-block = <code-block-boundary> plain-text <code-block-boundary>
+code = <code-boundary> plain-text <code-boundary>
+latex = <latex-boundary> plain-text <latex-boundary>
+<text> = (plain-text | todo | done | roam-render | highlight | bold | italic | image-alias | alias)*
+highlight = <highlight-boundary> text <highlight-boundary>
+bold = <bold-boundary> text <bold-boundary>
+italic = <italic-boundary> text <italic-boundary>
+alias = <alias-start> text alias-link
+image-alias = <image-alias-start> text alias-link
+alias-link = <alias-mid> plain-text <alias-end>
+block-ref = <block-ref-start> plain-text <block-ref-end>
+roam-render = <roam-render-start> (roam-render | text)* <roam-render-end>
+<alias-fragment-start> = (image-alias-start | alias-start) ! (alias | image-alias)
+
+<plain-text> =  #'[^\u0011\u0012\u0013]+'
+todo = <'\u0012\u0011{{[[TODO]]}}\u0013\u0012'>
+done = <'\u0012\u0011{{[[DONE]]}}\u0013\u0012'>
+link-start = <'\u0012\u0011[[\u0013\u0012'>
+link-end = <'\u0012\u0011]]\u0013\u0012'>
+code-block-boundary = <'\u0012\u0011```\u0013\u0012'>
+code-boundary = <'\u0012\u0011`\u0013\u0012'>
+block-ref-start = <'\u0012\u0011((\u0013\u0012'>
+block-ref-end = <'\u0012\u0011))\u0013\u0012'>
+roam-render-start = <'\u0012\u0011{{\u0013\u0012'>
+roam-render-end = <'\u0012\u0011}}\u0013\u0012'>
+latex-boundary = <'\u0012\u0011$$\u0013\u0012'>
+image-alias-start = <'\u0012\u0011![\u0013\u0012'>
+alias-start = <'\u0012\u0011[\u0013\u0012'>
+alias-mid = <'\u0012\u0011](\u0013\u0012'>
+alias-end = <'\u0012\u0011)\u0013\u0012'>
+highlight-boundary = <'\u0012\u0011^^\u0013\u0012'>
+bold-boundary = <'\u0012\u0011**\u0013\u0012'>
+italic-boundary = <'\u0012\u0011__\u0013\u0012'>
+
+

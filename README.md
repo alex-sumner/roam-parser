@@ -27,12 +27,14 @@ there and also in markers.clj
 
 ##### Some examples of configuration of the output possible by editing roam.bnf
 
-- To remove the :content keyword in the root element add angle brackets round it on line 1:  
-    <content> = (element | plain-text)*
+To remove the :content keyword in the root element add angle brackets round it on line 1:  
 
-- To allow only nested curly braces, but not bold or italic etc, within roam render sections,  
-  change text to plain-text in line 16:  
-    roam-render = <roam-render-start> (roam-render | plain-text)* <roam-render-end>
+<content> = (element | plain-text)*
+
+To allow only nested curly braces, but not bold or italic etc, within roam render sections,  
+change text to plain-text in line 16:  
+
+roam-render = <roam-render-start> (roam-render | plain-text)* <roam-render-end>
 
 The parsing is in 3 phases.
 * phase 1 is a regex search and replace that prepares the string for more efficient handling by the main parser

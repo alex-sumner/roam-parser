@@ -4,11 +4,11 @@
 
 ##### Usage:
 
-(parser/parse "Some text containing  an __italic section__ and a [[[[nested]]link]]")
+`(parser/parse "Some text containing  an __italic section__ and a [[[[nested]]link]]")`
 
 ##### produces:
 
-[:content "Some text containing  an " [:italic "italic section"] " and a " [:link [:link "nested"] "link"]]
+`[:content "Some text containing  an " [:italic "italic section"] " and a " [:link [:link "nested"] "link"]]`
 
 Uses the grammar specified in the file roam.bnf in the src root
 for more details see: https://github.com/Engelberg/instaparse/blob/master/docs/ABNF.md
@@ -29,12 +29,12 @@ there and also in markers.clj
 
 To remove the :content keyword in the root element add angle brackets round it on line 1:  
 
-<content> = (element | plain-text)*
+`<content> = (element | plain-text)*`
 
 To allow only nested curly braces, but not bold or italic etc, within roam render sections,  
 change text to plain-text in line 16:  
 
-roam-render = <roam-render-start> (roam-render | plain-text)* <roam-render-end>
+`roam-render = <roam-render-start> (roam-render | plain-text)* <roam-render-end>`
 
 The parsing is in 3 phases.
 * phase 1 is a regex search and replace that prepares the string for more efficient handling by the main parser

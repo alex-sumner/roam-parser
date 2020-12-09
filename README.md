@@ -1,12 +1,12 @@
-###Parser for text exported from Roam databases, see https://roamresearch.com/
+### Parser for text exported from Roam databases, see https://roamresearch.com/
 
-Based on the specification here: https://roamresearch.com/#/app/help/page/NYgRwJaQM
+#### Based on the specification here: https://roamresearch.com/#/app/help/page/NYgRwJaQM
 
-Usage:
+##### Usage:
 
 (parser/parse "Some text containing  an __italic section__ and a [[[[nested]]link]]")
 
-produces:
+##### produces:
 
 [:content "Some text containing  an " [:italic "italic section"] " and a " [:link [:link "nested"] "link"]]
 
@@ -25,15 +25,13 @@ by editing that file. If new element types are added to Roam in the future
 then the corresponding marker strings used to delineate them must be added
 there and also in markers.clj
 
-Some examples of configuration of the output possible by editing roam.bnf
+##### Some examples of configuration of the output possible by editing roam.bnf
 
-    To remove the :content keyword in the root element add angle brackets round it on line 1:
-
+- To remove the :content keyword in the root element add angle brackets round it on line 1:  
     <content> = (element | plain-text)*
 
-    To allow only nested curly braces, but not bold or italic etc, within roam render sections,
-    change text to plain-text in line 16:
-
+- To allow only nested curly braces, but not bold or italic etc, within roam render sections,  
+  change text to plain-text in line 16:  
     roam-render = <roam-render-start> (roam-render | plain-text)* <roam-render-end>
 
 The parsing is in 3 phases.

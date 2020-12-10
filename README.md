@@ -36,7 +36,34 @@ change text to plain-text in line 16:
 
 `roam-render = <roam-render-start> (roam-render | plain-text)* <roam-render-end>`
 
+##### How it works
+
 The parsing is in 3 phases.
 * phase 1 is a regex search and replace that prepares the string for more efficient handling by the main parser
 * phase 2 is the main parsing phase and uses the instaparse parser (see: https://github.com/Engelberg/instaparse)
 * phase 3 tidies up the resulting tree
+So, starting with the string:
+`"Text with a {{formula}} (in **__latex__**): $$a^{(1)} = x^t$$"`
+phase 1 will find and hlghlight the marker strings producing this:
+`"Text with a {{formula}} (in **__latex__**): $$a^{(1)} = x^t$$"`
+which phase 2 will parse as:
+`[:content
+  "Text with a "
+  [:roam-render "formula"]
+  " (in "
+  [:bold [:italic "latex"]]
+  [:alias-end]
+  ": "
+  [:latex "a^{(1)} = x^t"]]`
+This is mostly as we would wish, except that the closing parenthesis after the bold italic word "latex" has been interpreted as marking
+the end of a Roam alias, which is wrong. Note that this has not happened to the closing parenthesis after the number 1
+in the following formula, this is because that is inside a latex section (between $$ markers) which was enough for phase 1 to not highlight it.
+Phase 3 now tidies up, converting the unmatched link marker back to plain text and merging it with the adjacent text to
+produce:
+`[:content
+  "Text with a "
+  [:roam-render "formula"]
+  " (in "
+  [:bold [:italic "latex"]]
+  "): "
+  [:latex "a^{(1)} = x^t"]]`

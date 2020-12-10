@@ -22,7 +22,7 @@ and its children are plain text strings mixed with any of the following elements
 `:todo :done :link :code-block :code :block-ref :roam-render :latex :image-alias :alias :highlight :bold :italic`
 
 These elements may be nested in accordance with the rules of
-the grammar specified in roam.bnf and the results may be modified
+the grammar specified in `roam.bnf` and the results may be modified
 by editing that file. If new element types are added to Roam in the future
 then the corresponding marker strings used to delineate them must be added
 there and also in `markers.clj`

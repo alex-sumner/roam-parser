@@ -1,6 +1,8 @@
 # roam-parser
 Parser for text exported from Roam databases
 
+Takes a text string as exported from a Roam database and builds a tree representing it in Hiccup format (see https://github.com/weavejester/hiccup). 
+
 Based on the specification here: https://roamresearch.com/#/app/help/page/NYgRwJaQM
 
 ##### Usage:
@@ -11,8 +13,8 @@ produces:
 
 `[:content "Some text containing  an " [:italic "italic section"] " and a " [:link [:link "nested"] "link"]]`
 
-The parsing uses the grammar specified in the file `roam.bnf` in the src root
-for more details see: https://github.com/Engelberg/instaparse/blob/master/docs/ABNF.md
+The parsing conforms to the grammar specified in the file `roam.bnf` in the src root.
+For more details on the format of this file see: https://github.com/Engelberg/instaparse/blob/master/docs/ABNF.md
 
 The root element of the tree returned is `[:content ...]`
 and its children are plain text strings mixed with any of the following elements.

@@ -13,11 +13,10 @@
 Uses the grammar specified in the file roam.bnf in the src root
 for more details see: https://github.com/Engelberg/instaparse/blob/master/docs/ABNF.md
 
-The root element of the tree returned is [:content ...]
+The root element of the tree returned is `[:content ...]`
 and its children are plain text strings mixed with any of the following elements.
 
-:todo :done :link :code-block :code :block-ref :roam-render
-:latex :image-alias :alias :highlight :bold :italic
+`:todo :done :link :code-block :code :block-ref :roam-render :latex :image-alias :alias :highlight :bold :italic`
 
 These elements may be nested in accordance with the rules of
 the grammar specified in roam.bnf and the results may be modified
@@ -65,6 +64,7 @@ which phase 2 will parse as:
 This is mostly as we would wish, except that the closing parenthesis after the bold italic word "latex" has been interpreted as marking
 the end of a Roam alias, which is wrong. Note that this has not happened to the closing parenthesis after the number 1
 in the following formula, this is because that is inside a latex section (between $$ markers) which was enough for phase 1 to not highlight it.
+
 Phase 3 now tidies up, converting the unmatched link marker back to plain text and merging it with the adjacent text to
 produce:
 

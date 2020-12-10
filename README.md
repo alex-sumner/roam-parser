@@ -1,4 +1,5 @@
-# Parser for text exported from Roam databases
+# roam-parser
+Parser for text exported from Roam databases
 
 Based on the specification here: https://roamresearch.com/#/app/help/page/NYgRwJaQM
 

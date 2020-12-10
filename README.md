@@ -1,7 +1,7 @@
 # roam-parser
 Parser for text exported from Roam databases
 
-Takes a text string as exported from a Roam database and builds a tree representing it in Hiccup format (see https://github.com/weavejester/hiccup). 
+Takes a text string as exported from a Roam database (see: https://roamresearch.com/) and builds a tree representing it in Hiccup format (see: https://github.com/weavejester/hiccup). 
 
 Based on the specification here: https://roamresearch.com/#/app/help/page/NYgRwJaQM
 

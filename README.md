@@ -43,7 +43,9 @@ The parsing is in 3 phases.
 * phase 2 is the main parsing phase and uses the instaparse parser (see: https://github.com/Engelberg/instaparse)
 * phase 3 tidies up the resulting tree
 So, starting with the string:
+
 `"Text with a {{formula}} (in **__latex__**): $$a^{(1)} = x^t$$"`
+
 phase 1 will find and hlghlight the marker strings producing this:  
 
 `"Text with a ^R^Q{{^S^Rformula^R^Q}}^S^R (in ^R^Q**^S^R^R^Q__^S^Rlatex^R^Q__^S^R^R^Q**^S^R^R^Q)^S^R: ^R^Q$$^S^Ra^{(1)} = x^t^R^Q$$^S^R"`  

@@ -33,7 +33,7 @@ To remove the :content keyword in the root element add angle brackets round it o
 
 `<content> = (element | plain-text)*`
 
-To allow only nested curly braces, but not bold or italic etc, within roam render sections,  
+To allow only nested curly braces, but not bold or italic etc, within Roam render sections,  
 change text to plain-text in line 16:  
 
 `roam-render = <roam-render-start> (roam-render | plain-text)* <roam-render-end>`

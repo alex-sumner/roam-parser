@@ -44,9 +44,12 @@ The parsing is in 3 phases.
 * phase 3 tidies up the resulting tree
 So, starting with the string:
 `"Text with a {{formula}} (in **__latex__**): $$a^{(1)} = x^t$$"`
-phase 1 will find and hlghlight the marker strings producing this:
-`"Text with a {{formula}} (in **__latex__**): $$a^{(1)} = x^t$$"`
+phase 1 will find and hlghlight the marker strings producing this:  
+
+`"Text with a ^R^Q{{^S^Rformula^R^Q}}^S^R (in ^R^Q**^S^R^R^Q__^S^Rlatex^R^Q__^S^R^R^Q**^S^R^R^Q)^S^R: ^R^Q$$^S^Ra^{(1)} = x^t^R^Q$$^S^R"`  
+
 which phase 2 will parse as:
+
 `[:content
   "Text with a "
   [:roam-render "formula"]
@@ -55,11 +58,13 @@ which phase 2 will parse as:
   [:alias-end]
   ": "
   [:latex "a^{(1)} = x^t"]]`
+
 This is mostly as we would wish, except that the closing parenthesis after the bold italic word "latex" has been interpreted as marking
 the end of a Roam alias, which is wrong. Note that this has not happened to the closing parenthesis after the number 1
 in the following formula, this is because that is inside a latex section (between $$ markers) which was enough for phase 1 to not highlight it.
 Phase 3 now tidies up, converting the unmatched link marker back to plain text and merging it with the adjacent text to
 produce:
+
 `[:content
   "Text with a "
   [:roam-render "formula"]

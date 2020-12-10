@@ -1,16 +1,16 @@
-### Parser for text exported from Roam databases, see https://roamresearch.com/
+# Parser for text exported from Roam databases
 
-#### Based on the specification here: https://roamresearch.com/#/app/help/page/NYgRwJaQM
+Based on the specification here: https://roamresearch.com/#/app/help/page/NYgRwJaQM
 
 ##### Usage:
 
 `(parser/parse "Some text containing  an __italic section__ and a [[[[nested]]link]]")`
 
-##### produces:
+produces:
 
 `[:content "Some text containing  an " [:italic "italic section"] " and a " [:link [:link "nested"] "link"]]`
 
-Uses the grammar specified in the file roam.bnf in the src root
+The parsing uses the grammar specified in the file `roam.bnf` in the src root
 for more details see: https://github.com/Engelberg/instaparse/blob/master/docs/ABNF.md
 
 The root element of the tree returned is `[:content ...]`
@@ -22,7 +22,7 @@ These elements may be nested in accordance with the rules of
 the grammar specified in roam.bnf and the results may be modified
 by editing that file. If new element types are added to Roam in the future
 then the corresponding marker strings used to delineate them must be added
-there and also in markers.clj
+there and also in `markers.clj`
 
 ##### Some examples of configuration of the output possible by editing roam.bnf
 

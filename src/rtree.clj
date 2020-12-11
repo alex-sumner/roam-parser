@@ -1,8 +1,5 @@
-(ns rtree (:require [clojure.java.io :as io]
-            [clojure.string :as s]
-            [parser :refer [parse]]
-            [markers :refer [get-start-marker get-end-marker]]
-            [tidy :refer [tidy-tree]]))
+(ns rtree (:require [markers :refer [get-start-marker get-end-marker]]
+                    [tidy :refer [tidy-tree]]))
 
 (def rtree->string)
 

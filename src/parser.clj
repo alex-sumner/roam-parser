@@ -1,8 +1,6 @@
 (ns parser
-  (:require [clojure.java.io :as io]
-            [clojure.string :as s]
-            [instaparse.core :as insta]
-            [markers :refer [pre-parse keyword->marker]]
+  (:require [instaparse.core :as insta]
+            [markers :refer [pre-parse]]
             [tidy :refer [tidy-tree]]))
 
 ;; Parser for Roam page contents.

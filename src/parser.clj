@@ -2,7 +2,7 @@
   (:require [clojure.java.io :as io]
             [clojure.string :as s]
             [instaparse.core :as insta]
-            [markers :refer [pre-parse]]
+            [markers :refer [pre-parse keyword->marker]]
             [tidy :refer [tidy-tree]]))
 
 ;; Parser for Roam page contents.
@@ -41,7 +41,6 @@
 ;;  - phase 1 is a regex search and replace that prepares the string for more efficient handling by the main parser
 ;;  - phase 2 is the main parsing phase and uses the instaparse parser (see: https://github.com/Engelberg/instaparse)
 ;;  - phase 3 tidies up the resulting tree
-
 (def tokenizer
   (insta/parser (io/resource "roam.bnf")))
 
@@ -50,4 +49,3 @@
   parses it, and returns a tree of its contents formatted in Hiccup style."
   [s]
   (->> s pre-parse tokenizer tidy-tree))
- 

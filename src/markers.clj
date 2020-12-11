@@ -24,6 +24,47 @@
 
 (def keyword->marker (map-invert marker->keyword))
 
+;; Start markers for all markers which are not their own start marker.
+(def start-marker
+  {:link :link-start
+   :block-ref :block-ref-start
+   :roam-render :roam-render-start
+   :image-alias :image-alias-start
+   :alias :alias-start
+   :alias-link :alias-mid
+   })
+
+;; End markers for all markers which are not their own end marker.
+(def end-marker
+  {:link :link-end
+   :block-ref :block-ref-end
+   :roam-render :roam-render-end
+   :image-alias :alias-end
+   :alias :alias-end
+   })
+
+;; Given a marker, find its corresponding start marker.
+;; This may be the marker itself (e.g. :code), or a different
+;; marker (e.g. :link -> :link-start), or nil (e.g. :content)
+(defn get-start-marker
+  [k]
+  (keyword->marker
+   (if-let [m (start-marker k)]
+     m
+     k)))
+
+;; Given a marker, find its corresponding end marker.
+;; This may be the marker itself (e.g. :code), or a different
+;; marker (e.g. :link -> :link-end), or nil (e.g. :content or :done
+(defn get-end-marker
+  [k]
+  (keyword->marker
+   (if-let [m (end-marker k)]
+     m
+     (if (#{:alias-link :todo :done :content} k)
+       nil
+       k))))
+
 ;; A map whose keys are all the characters that both have a special meaning in a regular expression
 ;; and also occur in any of the marker strings defined in marker->keyword. These characters must be
 ;; escaped in the regex string and the map values are the escaped versions of them.
@@ -100,6 +141,6 @@
 ;; Takes the raw string to be parsed, returns the string that will be passed to the parser.
 (defn pre-parse
   [s]
- (init)
+  (init)
   (st/replace s regex replace-marker))
 

@@ -38,7 +38,7 @@ change text to plain-text in line 16:
 
 `roam-render = <roam-render-start> (roam-render | plain-text)* <roam-render-end>`
 
-#### Working with parsed trees
+##### Working with parsed trees
 
 The file `rtree.clj` provides 3 utility functions for working with parsed trees.
 * `rtree->rtree` transforms one Roam tree into another with some markers swapped (e.g. italic -> bold or TODO -> DONE)
